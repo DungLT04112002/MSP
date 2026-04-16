@@ -14,7 +14,11 @@ import lombok.*;
 public class Product {
     @Id
     private String id;
+    private String sku;
     private String name;
+    private String category;
     private String description;
     private BigDecimal price;
+    private Integer availableQuantity;
+    private Boolean active;
 }
