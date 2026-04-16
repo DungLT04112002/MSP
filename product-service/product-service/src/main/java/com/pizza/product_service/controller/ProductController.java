@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
+
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 @RestController
 @RequestMapping("/api/product")
@@ -23,7 +25,7 @@ import org.springframework.http.HttpStatus;
 public class ProductController {
 
     private final ProductRepository productRepository;
-
+    private final MongoTemplate mongoTemplate;
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProducts() {
@@ -34,6 +36,7 @@ public class ProductController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@RequestBody Product product) {
+        System.out.println("DEBUG: Dang dung Database: " + mongoTemplate.getDb().getName());
         return productRepository.save(product);
     }
 
